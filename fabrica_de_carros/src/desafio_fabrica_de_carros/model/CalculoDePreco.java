@@ -38,11 +38,11 @@ public class CalculoDePreco {
 	}
      
     public String calculaPrecoFinal() {
-    	double precoFinal=((this.valorCustoProducao*this.porcetagemDistribuidor)/100)+((this.valorCustoProducao*this.porcetagemImposto)/100);
-    	precoFinal+=this.valorCustoProducao;
+    	double calculoImpostos=((this.valorCustoProducao*this.porcetagemDistribuidor)/100)+((this.valorCustoProducao*this.porcetagemImposto)/100);
+    	double precoFinal=(this.valorCustoProducao+calculoImpostos);
     	DecimalFormat fmt=new DecimalFormat("##,###.000");
     	String preco=fmt.format(precoFinal);
-    	return "Preço final: R$ "+precoFinal;
+    	return "Preço final: R$ "+preco;
     } 
      
 }
