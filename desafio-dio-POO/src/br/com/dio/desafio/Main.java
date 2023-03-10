@@ -37,6 +37,7 @@ public class Main {
 		System.out.println("Michael Soares conteúdos concluídos: "+dev1.getConteudoConcluidos().toString());
 		System.out.println("XP: "+dev1.calcularTotalXp());
 		System.out.println("================================================================================");
+		
 		Dev dev2=new Dev();
 		dev2.setNome("Lucas Ryan");
 		dev2.inscreverBootcamp(bootcamp);
