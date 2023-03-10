@@ -2,6 +2,7 @@ package br.com.dio.desafio.dominio;
 
 import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 public class Dev {
@@ -32,23 +33,36 @@ public class Dev {
 		return conteudoInscritos;
 	}
 
-	public void setConteudoInscritos(Conteudo conteudoInscritos) {
-		this.conteudoInscritos.add(conteudoInscritos);
+	public void setConteudoInscritos(Set<Conteudo> conteudoInscritos) {
+		this.conteudoInscritos = conteudoInscritos;
 	}
 
 	public Set<Conteudo> getConteudoConcluidos() {
 		return conteudoConcluidos;
 	}
 
-	public void setConteudoConcluidos(Conteudo conteudoConcluidos) {
-		this.conteudoConcluidos.add(conteudoConcluidos);
+	public void setConteudoConcluidos(Set<Conteudo> conteudoConcluidos) {
+		this.conteudoConcluidos = conteudoConcluidos;
+	}
+
+	public void inscreverBootcamp(Bootcamp bootcamp) {
+		this.conteudoInscritos.addAll(bootcamp.getConteudos());
+		bootcamp.getDevs().add(this);
 	}
 	
-	public void inscreverBootcamp(Bootcamp bootcamp) {}
+	public void progredir() {
+		Optional<Conteudo> conteudo=this.conteudoInscritos.stream().findFirst();
+		if(conteudo.isPresent()) {
+			this.conteudoConcluidos.add(conteudo.get());
+			this.conteudoInscritos.remove(conteudo.get());
+		}else {
+			System.err.println("Você não está matriculado em nenhum conteúdo...");
+		}
+	}
 	
-	public void progredir() {}
-	
-	public void calcularTotalXp() {}
+	public double calcularTotalXp() {
+		return this.conteudoConcluidos.stream().mapToDouble(conteudo->conteudo.calcularXp()).sum();
+	}
 
 	@Override
 	public String toString() {

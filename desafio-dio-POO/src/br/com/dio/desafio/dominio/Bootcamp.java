@@ -10,22 +10,21 @@ public class Bootcamp {
     private String descricao;
     private final LocalDate dataInicio=LocalDate.now();
     private final LocalDate dataFim=dataInicio.plusDays(45);
-    Set<Conteudo> conteudos;
-    Set<Dev> devs;
+    private Set<Conteudo> conteudos;
+    private Set<Dev> devs;
     
     public Bootcamp() {
     	this.conteudos=new LinkedHashSet<>();
     	this.devs=new LinkedHashSet<>();
     }
+    
+    
 
-	
-
-	public Bootcamp(String nome, String descricao, Set<Conteudo> conteudos,
-			Set<Dev> devs) {
+	public Bootcamp(String nome, String descricao) {
+		this.conteudos=new LinkedHashSet<>();
+    	this.devs=new LinkedHashSet<>();
 		this.nome = nome;
 		this.descricao = descricao;
-		this.conteudos = conteudos;
-		this.devs = devs;
 	}
 
 
@@ -53,13 +52,27 @@ public class Bootcamp {
 	public LocalDate getDataFim() {
 		return dataFim;
 	}
-	
-	public void setConteudos(Conteudo conteudos) {
-		this.conteudos.add(conteudos);
+
+	public Set<Conteudo> getConteudos() {
+		return conteudos;
 	}
 
-	public void setDevs(Dev devs) {
-		this.devs.add(devs);
+
+
+	public void setConteudos(Set<Conteudo> conteudos) {
+		this.conteudos = conteudos;
+	}
+
+
+
+	public Set<Dev> getDevs() {
+		return devs;
+	}
+
+
+
+	public void setDevs(Set<Dev> devs) {
+		this.devs = devs;
 	}
 
 
